@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 
 const AuthFormExample = dynamic(
   () =>
-    import("../../../examples/example-auth-form/auth-form-example").then(
+    import("../../../examples/example-auth-form/app").then(
       (mod) => mod.AuthFormExample,
     ),
   {

@@ -11,21 +11,18 @@ const authCredentials = {
 export const authProvider: AuthProvider = {
   login: async ({ providerName, email }) => {
     if (providerName === "google") {
-      alert("google");
       return {
         success: true,
       };
     }
 
     if (providerName === "github") {
-      alert("github");
       return {
         success: true,
       };
     }
 
     if (email === authCredentials.email) {
-      alert("email");
       localStorage.setItem("email", email);
       return {
         success: true,
@@ -103,8 +100,10 @@ export const authProvider: AuthProvider = {
 
     return { error };
   },
-  check: async () =>
-    localStorage.getItem("email")
+  check: async () => {
+    const email = localStorage.getItem("email") ?? "alice@refine.dev";
+
+    return email
       ? {
           authenticated: true,
         }
@@ -116,11 +115,13 @@ export const authProvider: AuthProvider = {
           },
           logout: true,
           redirectTo: "/login",
-        },
+        };
+  },
   getPermissions: async (params) => params?.permissions,
   getIdentity: async () => ({
     id: 1,
     name: "Jane Doe",
     avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
+    email: "jane.doe@example.com",
   }),
 };

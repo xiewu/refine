@@ -1,21 +1,11 @@
-import { type ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { Input } from "@/registry/default/ui/input";
 import { cn } from "@/lib/utils";
 import { Eye, EyeOff } from "lucide-react";
 
-type InputPasswordProps = {
-  className?: string;
-  value?: string;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  props?: React.InputHTMLAttributes<HTMLInputElement>;
-};
+type InputPasswordProps = React.ComponentProps<"input">;
 
-export const InputPassword = ({
-  className,
-  value,
-  onChange,
-  ...props
-}: InputPasswordProps) => {
+export const InputPassword = ({ className, ...props }: InputPasswordProps) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -23,8 +13,6 @@ export const InputPassword = ({
       <Input
         type={showPassword ? "text" : "password"}
         className={cn(className)}
-        value={value}
-        onChange={onChange}
         {...props}
       />
       <button
