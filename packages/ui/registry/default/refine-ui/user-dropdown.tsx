@@ -1,4 +1,4 @@
-import { useGetIdentity } from "@refinedev/core";
+import { useGetIdentity, useLogout } from "@refinedev/core";
 import {
   Avatar,
   AvatarFallback,
@@ -10,8 +10,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/registry/default/ui/dropdown-menu";
+import { Button } from "@/registry/default/ui/button";
 import { Skeleton } from "@/registry/default/ui/skeleton";
-import { ChevronUp } from "lucide-react";
+import { ChevronUp, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type User = {
@@ -26,6 +27,8 @@ type UserDropdownProps = {
 };
 
 export function UserDropdown({ className }: UserDropdownProps) {
+  const { mutate: logout, isLoading: logoutIsLoading } = useLogout();
+
   const { data: user, isLoading: userIsLoading } = useGetIdentity<User>();
 
   if (userIsLoading) {
@@ -55,35 +58,62 @@ export function UserDropdown({ className }: UserDropdownProps) {
             "flex",
             "items-center",
             "gap-x-2",
-            "p-2",
+            "py-3",
+            "pr-2",
             "rounded-md",
             "hover:bg-accent",
             "focus:outline-none",
             "w-full",
             "text-left",
+            "overflow-hidden",
             className,
           )}
         >
-          <Avatar className={cn("h-8", "w-8")}>
+          <Avatar className={cn("h-10", "w-10")}>
             {avatar && <AvatarImage src={avatar} alt={name} />}
             <AvatarFallback>{getInitials(name)}</AvatarFallback>
           </Avatar>
-          <div className={cn("flex", "flex-col")}>
-            <span className={cn("text-sm", "font-medium", "text-foreground")}>
+          <div className={cn("flex", "flex-col", "gap-y-1")}>
+            <span
+              className={cn(
+                "text-sm",
+                "font-medium",
+                "text-zinc-500",
+                "dark:text-zinc-400",
+              )}
+            >
               {name}
             </span>
-            <span className={cn("text-xs", "text-muted-foreground")}>
+            <span
+              className={cn("text-xs", "text-zinc-500", "dark:text-zinc-400")}
+            >
               {email}
             </span>
           </div>
-          <ChevronUp
-            className={cn("h-4", "w-4", "ml-auto", "text-muted-foreground")}
-          />
+          <ChevronUp className={cn("h-5", "w-5", "ml-auto", "text-zinc-500")} />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-56">
-        <DropdownMenuItem>item1</DropdownMenuItem>
-        <DropdownMenuItem>item2</DropdownMenuItem>
+      <DropdownMenuContent align="end" className={cn("w-60")}>
+        <DropdownMenuItem className={cn("p-0")}>
+          <Button
+            variant="ghost"
+            size="lg"
+            onClick={() => logout()}
+            disabled={logoutIsLoading}
+            className={cn(
+              "text-destructive",
+              "hover:text-destructive",
+              "w-full",
+              "flex",
+              "items-center",
+              "justify-start",
+              "gap-x-2",
+            )}
+          >
+            <LogOut className={cn("h-4", "w-4", "text-destructive")} />
+            Log out
+          </Button>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

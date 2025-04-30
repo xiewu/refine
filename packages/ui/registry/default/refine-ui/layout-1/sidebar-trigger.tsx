@@ -17,7 +17,6 @@ export function SidebarTrigger({
       variant="ghost"
       size="icon"
       className={cn(
-        "cursor-pointer",
         "text-muted-foreground",
         "transition-all",
         "duration-200",

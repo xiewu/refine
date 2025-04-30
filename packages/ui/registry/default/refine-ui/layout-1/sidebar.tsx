@@ -23,40 +23,67 @@ import {
   CollapsibleTrigger,
 } from "@/registry/default/ui/collapsible";
 import { Button } from "@/registry/default/ui/button";
-import { SidebarTrigger } from "@/registry/default/refine-ui/layout/sidebar-trigger";
-import { UserDropdown } from "@/registry/default/refine-ui/layout/user-dropdown";
+import { SidebarTrigger } from "@/registry/default/refine-ui/layout-1/sidebar-trigger";
+import { Separator } from "@/registry/default/ui/separator";
 import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { UserDropdown } from "../user-dropdown";
 
 export function Sidebar() {
   const { open } = useShadcnSidebar();
   const { menuItems, selectedKey } = useMenu();
 
   return (
-    <ShadcnSidebar collapsible="icon" className={cn("!border-r-0")}>
+    <ShadcnSidebar
+      collapsible="icon"
+      className={cn("border-r", "border-sidebar-border")}
+    >
       <SidebarHeader />
       <ShadcnSidebarContent
         className={cn(
-          "border-r",
-          "border-sidebar-border",
           "transition-all",
           "duration-200",
+          "flex",
+          "flex-col",
+          "gap-2",
           "pt-6",
           "pb-2",
-          open ? "px-3" : "px-1",
+          {
+            "px-3": open,
+            "px-1": !open,
+          },
         )}
       >
-        <div className={cn("flex", "flex-col", "gap-4")}>
-          {menuItems.map((item: ITreeMenu) => (
-            <SidebarItem
-              key={item.key || item.name}
-              item={item}
-              selectedKey={selectedKey}
-            />
-          ))}
-        </div>
-        <UserDropdown className={cn("mt-auto")} />
+        {menuItems.map((item: ITreeMenu) => (
+          <SidebarItem
+            key={item.key || item.name}
+            item={item}
+            selectedKey={selectedKey}
+          />
+        ))}
+        <div
+          className={cn(
+            "absolute",
+            "bottom-[81px]",
+            "left-0",
+            "w-full",
+            "h-16",
+            "bg-gradient-to-b",
+            "from-white/0",
+            "dark:from-black/0",
+            "to-sidebar",
+          )}
+        />
       </ShadcnSidebarContent>
+      <div
+        className={cn("mt-auto", "pb-1", {
+          "px-2": open,
+          "px-1": !open,
+        })}
+      >
+        <Separator className={cn("mb-3")} />
+        <UserDropdown />
+      </div>
     </ShadcnSidebar>
   );
 }
@@ -325,7 +352,7 @@ const SidebarButton: React.FC<SidebarButtonProps> = ({
       variant="ghost"
       size="lg"
       className={cn(
-        "cursor-pointer flex w-full items-center justify-start gap-2 py-2 !px-3 text-sm",
+        "flex w-full items-center justify-start gap-2 py-2 !px-3 text-sm",
         {
           "bg-sidebar-primary": isSelected,
           "hover:!bg-sidebar-primary/90": isSelected,

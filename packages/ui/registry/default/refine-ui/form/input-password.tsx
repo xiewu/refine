@@ -19,7 +19,6 @@ export const InputPassword = ({ className, ...props }: InputPasswordProps) => {
         type="button"
         className={cn(
           "appearance-none",
-          "cursor-pointer",
           "absolute right-3 top-1/2 -translate-y-1/2",
         )}
         onClick={() => setShowPassword(!showPassword)}

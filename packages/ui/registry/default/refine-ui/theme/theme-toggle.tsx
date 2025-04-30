@@ -1,4 +1,4 @@
-import { useTheme } from "@/registry/default/refine-ui/layout/theme-provider";
+import { useTheme } from "@/registry/default/refine-ui/theme/theme-provider";
 import { Button } from "@/registry/default/ui/button";
 import { cn } from "@/lib/utils";
 import { Moon, Sun } from "lucide-react";
@@ -11,12 +11,7 @@ export function ThemeToggle() {
       variant="outline"
       size="icon"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className={cn(
-        "cursor-pointer",
-        "rounded-full",
-        "border-sidebar-border",
-        "bg-transparent",
-      )}
+      className={cn("rounded-full", "border-sidebar-border", "bg-transparent")}
     >
       <Sun
         className={cn(

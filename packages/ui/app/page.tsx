@@ -18,9 +18,14 @@ export default function Home() {
             </h2>
           </div>
           <div className="flex items-center justify-center min-h-[400px] relative">
-            <Link href="/auth-form" replace className="underline">
+            <a
+              href="/auth-form"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+            >
               go to Auth Form
-            </Link>
+            </a>
           </div>
         </div>
       </main>

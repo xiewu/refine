@@ -1,1 +1,1 @@
-export const API_URL = "https://api.finefoods.refine.dev";
+export const API_URL = "https://api.fake-rest.refine.dev";

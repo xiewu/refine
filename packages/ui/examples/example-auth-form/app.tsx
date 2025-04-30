@@ -15,6 +15,8 @@ import { LoginForm } from "@/examples/example-auth-form/components/login-form";
 import { notificationProvider } from "./providers/notification";
 import { Toaster } from "@/registry/default/ui/sonner";
 import { AppLayout } from "./components/layout";
+import { PostsListPage } from "./routes/posts/list";
+import { UsersListPage } from "./routes/users/list";
 import {
   BellIcon,
   CreditCardIcon,
@@ -119,8 +121,8 @@ export function AuthFormExample() {
             }
           >
             <Route path="/" element={<div>Home</div>} />
-            <Route path="/posts" element={<div>Posts List Page</div>} />
-            <Route path="/users" element={<div>Users List Page</div>} />
+            <Route path="/posts" element={<PostsListPage />} />
+            <Route path="/users" element={<UsersListPage />} />
             <Route path="/settings" element={<div>Settings List Page</div>} />
             <Route path="/profile" element={<div>Profile List Page</div>} />
             <Route

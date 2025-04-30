@@ -13,7 +13,7 @@ import {
   CardFooter,
 } from "@/registry/default/ui/card";
 import { Separator } from "@/registry/default/ui/separator";
-import { InputPassword } from "@/registry/default/refine-ui/auth-form/input-password";
+import { InputPassword } from "@/registry/default/refine-ui/form/input-password";
 import { CircleHelp } from "lucide-react";
 import { cn } from "@/lib/utils";
 

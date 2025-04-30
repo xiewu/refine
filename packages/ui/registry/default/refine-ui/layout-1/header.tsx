@@ -1,6 +1,6 @@
 import { useSidebar } from "@/registry/default/ui/sidebar";
-import { SidebarTrigger } from "@/registry/default/refine-ui/layout/sidebar-trigger";
-import { ThemeToggle } from "@/registry/default/refine-ui/layout/theme-toggle";
+import { SidebarTrigger } from "@/registry/default/refine-ui/layout-1/sidebar-trigger";
+import { ThemeToggle } from "@/registry/default/refine-ui/theme/theme-toggle";
 import { cn } from "@/lib/utils";
 
 export function Header() {
